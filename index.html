@@ -45,7 +45,7 @@
     </style>
     <link rel="stylesheet" href="main.css">
     <link rel="icon" type="image/x-icon" href="assets/favicon.png">
-    <title>IRWM: An Interactive World Model for Real-Robot Manipulation</title>
+    <title>RWM: An Interactive World Model for Real-Robot Manipulation</title>
 </head>
 <body>
     <div id="video_grid">
@@ -109,7 +109,7 @@
     
 <div id="title_slide">
     <div class="title_left">
-        <h1 style="text-align: center;">IRWM: An Interactive World Model for Real-Robot Manipulation</h1>
+        <h1 style="text-align: center;">RWM: An Interactive World Model for Real-Robot Manipulation</h1>
         <div class="author-container-1">
             <div class="grid-item">ICLR 2025 Submission #6028</div>
         </div>
@@ -120,17 +120,15 @@
             <p>
                 Scalable robot learning in the real world is limited by the cost and safety issues
                 of real robots. In addition, rolling out robot trajectories in the real world can be
-                time-consuming and labor-intensive. In this paper, we propose to learn interactive
-                world models as alternatives. We present a novel method, IRWM (<strong>I</strong>nteractive <strong>R</strong>eal Robot <strong>W</strong>orld <strong>M</strong>odel), which leverages the power of generative models to generate
-                realistic videos of a robot arm that executes a given action trajectory, starting from
-                an initial given frame. To validate the effectiveness of our method, we perform
-                extensive experiments on four challenging real-robot datasets and a real robot.
-                Results show that IRWM outperforms all the baseline methods and is preferable
-                in human evaluations. We also demonstrate the robust action controllability of
-                IRWM, and how it can be used for model-based planning. We hope that IRWM
-                can serve as an effective and scalable approach to enhance robot learning in the
-                real world.
-                
+                time-consuming and labor-intensive. In this paper, we propose to learn an interactive robot world model as an alternative. We present a novel method, RWM, which
+                leverages the power of generative models to generate realistic videos of a robot arm
+                executing a given action trajectory, starting from an initial given frame. To validate
+                the effectiveness of our method, we perform extensive experiments on four challenging real-robot datasets. Results show that RWM outperforms all the comparing
+                baseline methods and is more preferable in human evaluations. We also demonstrate the robustness of RWM on generating videos from trajectories predicted by a
+                policy and collected from human teleloperation. Finally, we combine RWM with
+                model-based planning to showcase its usefulness on real-robot manipulation tasks.
+                We hope that RWM can serve as an effective and scalable approach to enhance robot
+                learning in the real world.
             </p>
         </div>
     </div>
@@ -149,7 +147,7 @@
         <div class="image_container">
             <img src="assets/images/intro.png">
             <div class="caption" style="margin-top: 0.0vw">
-                <p>Figure 1: <strong>Overview of IRWM.</strong>IRWM is an interactive world model that allows users to input an
+                <p>Figure 1: <strong>Overview of RWM.</strong>RWM is an interactive world model that allows users to input an
                     action trajectory to control the "real robot" in an initial frame.</p>
             </div>
         </div>
@@ -158,16 +156,16 @@
     <h1 style="text-align: center;">Trajectory-conditioned Video Generation</h1>
 
     <p>
-        IRWM is a novel method that generates extremely realistic videos of a robot that executes an action trajectory, starting from a given initial frame.
+        RWM is a novel method that generates extremely realistic videos of a robot that executes an action trajectory, starting from a given initial frame.
         We refer to this task as the <em>trajectory-to-video</em> task.
         The trajectory-to-video task differs from the general text-to-video task. 
         While various videos can meet the text condition in the text-to-video task, the predicted video in our trajectory-to-video task must strictly and accurately follow the input trajectory.
         More importantly, a challenge of this task is that each action in the trajectory provides an exact description of the robot's movement in each frame.
         This contrasts with the text-to-video task, where textual descriptions offer a general condition without specific frame-by-frame details.
         Another challenge is that the trajectory-to-video task features rich robot-object interactions, which must adhere to physical laws.
-        IRWM leverages an innovative frame-level condition method to achieve precise frame-by-frame alignment between actions and video frames. 
-        We use the powerful Diffusion Transformer as the backbone of IRWM to improve the modeling of robot-object interactions. 
-        <strong>IRWM can generate realistic videos of high-resolution (up to 288 × 512) and long-horizon (up to 150+ frames).</strong>
+        RWM leverages an innovative frame-level condition method to achieve precise frame-by-frame alignment between actions and video frames. 
+        We use the powerful Diffusion Transformer as the backbone of RWM to improve the modeling of robot-object interactions. 
+        <strong>RWM can generate realistic videos of high-resolution (up to 288 × 512) and long-horizon (up to 150+ frames).</strong>
 
     </p>
 
@@ -176,7 +174,7 @@
             <img src="assets/images/network.png">
             <div class="caption" style="margin-top: 0.0vw">
                 <p>
-                    Figure 2: <strong>Network Architecture of IRWM.</strong> (a) shows the general diffusion transformer architecture of IRWM. The input to IRWM includes the initial frame and the entire trajectory. (b) Frame-level adaptation (Frame-Ada). (c) Video-level adaptation (Video-Ada).
+                    Figure 2: <strong>Network Architecture of RWM.</strong> (a) shows the general diffusion transformer architecture of RWM. The input to RWM includes the initial frame and the entire trajectory. (b) Frame-level adaptation (Frame-Ada). (c) Video-level adaptation (Video-Ada).
                 </p>
             </div>
         </div>
@@ -188,7 +186,7 @@
         Click the <em>Click to View More</em> button to display another random subset from 100 unpicked samples for each dataset.
         All samples are from the test set.
         Each video contains 16 frames with 4 fps. 
-        The video on the left is generated by IRWM, while the video on the right is the ground truth.
+        The video on the left is generated by RWM, while the video on the right is the ground truth.
     </p>
     </br>
     <div class="button-container">
@@ -206,8 +204,8 @@
         Hover over on these longest videos to see their number of frames.
         All episodes are from the test set. 
         The average number of frames of the 100 unpicked episodes are 47.04, 36.43, and 24.57 for RT-1, Bridge, and Language-Table, respectively.
-        The video on the left is generated by IRWM; the video on the right is the ground truth. 
-        IRWM retains the powerful capability of generating visually realistic and accurate videos of long-horizon as in the short trajectory setting.  
+        The video on the left is generated by RWM; the video on the right is the ground truth. 
+        RWM retains the powerful capability of generating visually realistic and accurate videos of long-horizon as in the short trajectory setting.  
     </p>
     </br>
     <div class="button-container">
@@ -219,9 +217,9 @@
 
     <h1 style="text-align: center;">Scaling</h1>
     <p>
-        We follow DiT and train IRWM-Frame-Ada of different model sizes ranging from 33M to 679M. 
+        We follow DiT and train RWM-Frame-Ada of different model sizes ranging from 33M to 679M. 
         Results are shown in Fig. 4. 
-        On all three datasets, IRWM scales elegantly with the increase of model sizes and training steps. 
+        On all three datasets, RWM scales elegantly with the increase of model sizes and training steps. 
         This indicates strong potential for increasing model sizes and training steps to further improve the performance.
     </p>
     <div class="barplot">
@@ -229,7 +227,7 @@
             <img src="assets/images/scale.png">
             <div class="caption" style="margin-top: 0.0vw; margin-bottom: 0vw; text-align: center;">
                 <p>
-                    Figure 4: <strong>Scaling.</strong> IRWM scales elegantly with the increase of model sizes and training steps
+                    Figure 4: <strong>Scaling.</strong> RWM scales elegantly with the increase of model sizes and training steps
                 </p>
             </div>
         </div>
@@ -243,10 +241,10 @@
         In addition to quantitatively assessing action controllability through trajectories from the test set, we conduct qualitative experiments where virtual robots are controlled using trajectories generated from three distinct sources: (a) a keyboard, (b) a Vive controller, and (c) a policy.
         For Language-Table with a 2D translation action space, we use the arrow keys from the keyboard to input action trajectories.
         For RT-1 and Bridge with a 3D action space, we use the Vive controller to record action trajectories as input. 
-        We also train IRWM on our own robot dataset and utilize a well-trained policy with action chunk techniques to predict the trajectories. We execute these trajectories on both the real robot and IRWM, comparing the video results to evaluate IRWM's ability to handle the trajectories generated by the policy.
-        The Videos below shows that IRWM can accurately follow trajectories from different sources, beyond the training domain. 
-        Additionally, IRWM is able to robustly handle multimodality in generation,i.e., generating corresponding videos with an identical initial frame but different trajectories.
-        In the Appendix in the paper, we also demonstrate that IRWM can handle noisy and physically implausible trajectories. 
+        We also train RWM on our own robot dataset and utilize a well-trained policy with action chunk techniques to predict the trajectories. We execute these trajectories on both the real robot and RWM, comparing the video results to evaluate RWM's ability to handle the trajectories generated by the policy.
+        The Videos below shows that RWM can accurately follow trajectories from different sources, beyond the training domain. 
+        Additionally, RWM is able to robustly handle multimodality in generation,i.e., generating corresponding videos with an identical initial frame but different trajectories.
+        In the Appendix in the paper, we also demonstrate that RWM can handle noisy and physically implausible trajectories. 
     </p>
 
     <h2 style="text-align: center; margin: 20px 20px 20px 20px; font-weight: normal; font-size: 1.2vw">"Controlling" the Robot in Language-Table with a Keyboard</h2>
@@ -294,7 +292,7 @@
 
     <h1 style="text-align: center;margin-bottom: 10px;">Real-Robot Model-based Planning Experiment</h1>
     <p>
-        We conduct a real-robot model-based planning experiment to show the usefulness of IRWM for manipulation task. The experiment demonstrates that IRWM can effectively plan trajectories to finish manipulation tasks by predicting the outcomes of executing different candidate trajectories.
+        We conduct a real-robot model-based planning experiment to show the usefulness of RWM for manipulation task. The experiment demonstrates that RWM can effectively plan trajectories to finish manipulation tasks by predicting the outcomes of executing different candidate trajectories.
     </p>
 
     <p><b>Video results:</b> The left column includes the Initial Image and the Goal Image, while each column on the right shows 
@@ -319,7 +317,7 @@
 
         <!-- Other columns with videos -->
         <div class="item">
-            <h3>IRWM (ResNet) Success</h3>
+            <h3>RWM (ResNet) Success</h3>
             <h3> Execute Video </h3>
             <video autoplay muted loop>
                 <source src="assets/videos/planning/close_drawer/resnet/43_success.mp4" type="video/mp4">
@@ -328,7 +326,7 @@
             <h3> Predict Video </h3>
         </div>
         <div class="item">
-            <h3>IRWM (ResNet) Fail</h3>
+            <h3>RWM (ResNet) Fail</h3>
             <h3> Execute Video </h3>
             <video autoplay muted loop>
                 <source src="assets/videos/planning/close_drawer/resnet/48_fail.mp4" type="video/mp4">
@@ -337,7 +335,7 @@
             <h3> Predict Video </h3>
         </div>
         <div class="item">
-            <h3>IRWM (MSE) Success</h3>
+            <h3>RWM (MSE) Success</h3>
             <h3> Execute Video </h3>
             <video autoplay muted loop>
                 <source src="assets/videos/planning/close_drawer/mse/45_success.mp4" type="video/mp4">
@@ -346,7 +344,7 @@
             <h3> Predict Video </h3>
         </div>
         <div class="item">
-            <h3>IRWM (MSE) Fail</h3>
+            <h3>RWM (MSE) Fail</h3>
             <h3> Execute Video </h3>
             <video autoplay muted loop>
                 <source src="assets/videos/planning/close_drawer/mse/30_fail.mp4" type="video/mp4">
@@ -391,7 +389,7 @@
     
             <!-- Other columns with videos -->
             <div class="item">
-                <h3>IRWM (ResNet) Success</h3>
+                <h3>RWM (ResNet) Success</h3>
                 <h3> Execute Video </h3>
             <video autoplay muted loop>
                     <source src="assets/videos/planning/place_green/resnet/39_success.mp4" type="video/mp4">
@@ -400,7 +398,7 @@
                 <h3> Predict Video </h3>
             </div>
             <div class="item">
-                <h3>IRWM (ResNet) Fail</h3>
+                <h3>RWM (ResNet) Fail</h3>
                 <h3> Execute Video </h3>
                 <video autoplay muted loop>
                     <source src="assets/videos/planning/place_green/resnet/46_fail.mp4" type="video/mp4">
@@ -409,7 +407,7 @@
                 <h3> Predict Video </h3>
             </div>
             <div class="item">
-                <h3>IRWM (MSE) Success</h3>
+                <h3>RWM (MSE) Success</h3>
                 <h3> Execute Video </h3>
             <video autoplay muted loop>
                     <source src="assets/videos/planning/place_green/mse/40_success.mp4" type="video/mp4">
@@ -418,7 +416,7 @@
                 <h3> Predict Video </h3>
             </div>
             <div class="item">
-                <h3>IRWM (MSE) Fail</h3>
+                <h3>RWM (MSE) Fail</h3>
                 <h3> Execute Video </h3>
             <video autoplay muted loop>
                     <source src="assets/videos/planning/place_green/mse/44_fail.mp4" type="video/mp4">
@@ -463,7 +461,7 @@
         
                 <!-- Other columns with videos -->
                 <div class="item">
-                    <h3>IRWM (ResNet) Success</h3>
+                    <h3>RWM (ResNet) Success</h3>
                     <h3> Execute Video </h3>
             <video autoplay muted loop>
                         <source src="assets/videos/planning/place_red/resnet/30_success.mp4" type="video/mp4">
@@ -472,7 +470,7 @@
                     <h3> Predict Video </h3>
                 </div>
                 <div class="item">
-                    <h3>IRWM (ResNet) Fail</h3>
+                    <h3>RWM (ResNet) Fail</h3>
                     <h3> Execute Video </h3>
             <video autoplay muted loop>
                         <source src="assets/videos/planning/place_red/resnet/44_fail.mp4" type="video/mp4">
@@ -481,7 +479,7 @@
                     <h3> Predict Video </h3>
                 </div>
                 <div class="item">
-                    <h3>IRWM (MSE) Success</h3>
+                    <h3>RWM (MSE) Success</h3>
                     <h3> Execute Video </h3>
             <video autoplay muted loop>
                         <source src="assets/videos/planning/place_red/mse/32_success.mp4" type="video/mp4">
@@ -490,7 +488,7 @@
                     <h3> Predict Video </h3>
                 </div>
                 <div class="item">
-                    <h3>IRWM (MSE) Fail</h3>
+                    <h3>RWM (MSE) Fail</h3>
                     <h3> Execute Video </h3>
             <video autoplay muted loop>
                         <source src="assets/videos/planning/place_red/mse/21_fail.mp4" type="video/mp4">
